@@ -1,24 +1,46 @@
-package com.restapi.app.ws.shared.dto;
+package com.restapi.app.ws.io.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private long id;
+@Entity(name = "Users") // name will be a name of the table
+public class UserEntity implements Serializable {
+
+    private static final long serialVersionUID = 1l;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(nullable = false)
     private String userId;
+
+    @Column(nullable = false, length = 50)
     private String firstName;
+
+    @Column(nullable = false, length = 50)
     private String lastName;
+
+    @Column(nullable = false, length = 100)
     private String email;
-    private String password;
+
+    @Column(nullable = false)
     private String encryptedPassword;
+
     private String emailVerificationToken;
+
+    @Column(nullable = false)
     private Boolean emailVerificationStatus = false;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,14 +76,6 @@ public class UserDto implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEncryptedPassword() {
         return encryptedPassword;
     }
@@ -78,11 +92,11 @@ public class UserDto implements Serializable {
         this.emailVerificationToken = emailVerificationToken;
     }
 
-    public boolean getEmailVerificationStatus() {
+    public Boolean getEmailVerificationStatus() {
         return emailVerificationStatus;
     }
 
-    public void setEmailVerificationStatus(boolean emailVerificationStatus) {
+    public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
         this.emailVerificationStatus = emailVerificationStatus;
     }
 }
