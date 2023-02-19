@@ -1,6 +1,7 @@
 package com.restapi.app.ws.ui.controller;
 
 import com.restapi.app.ws.ui.model.request.UserDetailsRequestModel;
+import com.restapi.app.ws.ui.model.response.UserRest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,8 +14,8 @@ public class UserController {
     }
 
     @PostMapping
-    public String createUser(@RequestBody UserDetailsRequestModel userDetails) {
-        return "Create user was called";
+    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
+        return null;
     }
 
     @PutMapping
