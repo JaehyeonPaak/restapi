@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto createUser(UserDto user) {
 
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            // Springboot will handle this exception and display formatted JSON response
+            throw new RuntimeException("Record already exists");
+        }
+
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
 
@@ -25,6 +30,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setEncryptedPassword("test");
 
         UserEntity storedUserDetails = userRepository.save(userEntity);
+
         UserDto returnValue = new UserDto();
         BeanUtils.copyProperties(storedUserDetails, returnValue);
 
